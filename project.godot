@@ -11,8 +11,18 @@ config_version=5
 [application]
 
 config/name="Open Aim Trainer"
-config/features=PackedStringArray("4.1", "Forward Plus")
+run/main_scene="res://scenes/ui/main_screen.tscn"
+config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+boot_splash/image="res://assets/images/open_aim_trainer_16_9_Logo_v1.png"
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=3840
+window/size/viewport_height=2160
+window/size/mode=3
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
