@@ -35,3 +35,7 @@ theme/default_theme_scale=4.0
 [internationalization]
 
 locale/translations=PackedStringArray("res://assets/text/text.en.translation", "res://assets/text/text.es.translation")
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

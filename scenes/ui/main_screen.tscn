@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxi8ha06njngi"]
+[gd_scene load_steps=6 format=3 uid="uid://cxi8ha06njngi"]
 
 [ext_resource type="Script" path="res://scripts/ui/MainScreen.cs" id="1_dmn7w"]
+[ext_resource type="StyleBox" uid="uid://blbyjj1sqcju4" path="res://assets/themes/orange_round.tres" id="2_5xtf0"]
+[ext_resource type="StyleBox" uid="uid://bg2rt2fe0svu6" path="res://assets/themes/pink_round.tres" id="3_1oqyt"]
+[ext_resource type="Texture2D" uid="uid://drx4yqm68nc5y" path="res://assets/images/logo_no_background.svg" id="4_kr6qc"]
+
+[sub_resource type="Theme" id="Theme_qmco3"]
+Button/styles/focus = ExtResource("3_1oqyt")
+Button/styles/hover = ExtResource("3_1oqyt")
+Button/styles/normal = ExtResource("2_5xtf0")
+Button/styles/pressed = ExtResource("3_1oqyt")
 
 [node name="MainScreen" type="Control"]
 layout_mode = 3
@@ -11,20 +20,46 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dmn7w")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer"]
 layout_mode = 2
 
-[node name="Play" type="Button" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
 layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_qmco3")
 text = "PLAY"
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Logo" type="Sprite2D" parent="BoxContainer"]
+modulate = Color(1, 1, 1, 0.27451)
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_kr6qc")
