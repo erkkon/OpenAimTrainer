@@ -4,12 +4,14 @@ using System.Collections.Generic;
 
 public partial class MainScreen : Control
 {
+	// Diferent game 3d mouse sensitivities conversions related to our 3d space.
 	Dictionary<string, double> gamesSensitivities = new(){
 		{"valorant", 0.0707589285714285},
 		{"counterStrike", 0.0222372497081799},
 		{"fortnite", 0.00561534231977053}
 	};
 
+	// Spawn target parameters
 	public class ModelData
 	{
 		public int spawn_location_x_0;
@@ -21,6 +23,7 @@ public partial class MainScreen : Control
 		public int number_of_initial_targets;
 	}
 
+	// Diferent customs for target spawn, size, movment, locations, etc.
 	public Dictionary<string, ModelData> models3d = new Dictionary<string, ModelData>()
 	{
 		{ "3d_head_level_v1", new ModelData

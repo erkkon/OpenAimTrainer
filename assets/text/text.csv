@@ -1,3 +1,21 @@
 ,en,es
 PLAY,Play,Jugar
-OPTIONS,Options,opciones
+OPTIONS,Options,Opciones
+RESOLUTION,Resolution,Resolución
+EXIT,Exit,Salir
+CROSSHAIR,Crosshair,Mira
+OUTLINE,Outline,Borde
+CROSSHAIRINNER,Crosshair Inner,Mira interior
+DOT,Dot,Punto
+DOTSIZE,Dot Size,Tamaño punto
+OUTLINESIZE,Outline Size, Tamaño
+CROSSHAIRHEIGHT,Crosshair height,Altura mira
+CROSSHAIRWIDTH,Crosshair width,Anchura mira
+CROSSHAIRSPACE,Crosshair space,Espacio mira
+CROSSHAIRCOLOR,Crosshair color,Color mira
+CROSSHAIROUTLINECOLOR,Crosshair outline color,Color borde mira
+TARGET,Target,Enemigo
+TARGETCOLOR,Target color,Color enemigo
+IMPORT,Import,Importar
+EXPORT,Export,Exportar
+BACK,Back,Atras
