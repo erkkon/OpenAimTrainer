@@ -27,3 +27,4 @@ layout_mode = 2
 
 [node name="Play" type="Button" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+text = "PLAY"

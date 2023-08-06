@@ -21,9 +21,17 @@ config/icon="res://icon.svg"
 window/size/viewport_width=3840
 window/size/viewport_height=2160
 window/size/mode=3
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [dotnet]
 
 project/assembly_name="Open Aim Trainer"
+
+[gui]
+
+theme/default_theme_scale=4.0
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/text/text.en.translation", "res://assets/text/text.es.translation")
