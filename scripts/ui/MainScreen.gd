@@ -1,11 +1,11 @@
 extends Control
 
-@onready var game = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Game
-@onready var resolution_label := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ResolutionLabel
-@onready var gamelist := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2
-@onready var slider_quality := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/QualitySlider
-@onready var sensitivity := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity
-@onready var exit_button = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit
+@onready var game = $MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer/Game
+@onready var resolution_label := $MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/ResolutionLabel
+@onready var gamelist := $MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer2
+@onready var slider_quality := $MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/QualitySlider
+@onready var sensitivity := $MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity
+@onready var exit_button = $MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Quit
 
 #4k
 var games_sensitivities: Dictionary = {
@@ -117,7 +117,7 @@ func startTraining(type):
 
 func update_resolution_label() -> void:
 	var viewport_render_size = get_viewport().size * get_viewport().scaling_3d_scale
-	resolution_label.text = "3D viewport resolution: %d × %d (%d%%)" \
+	resolution_label.text = "%d × %d (%d%%)" \
 			% [viewport_render_size.x, viewport_render_size.y, round(get_viewport().scaling_3d_scale * 100)]
 
 

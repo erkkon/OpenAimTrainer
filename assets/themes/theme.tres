@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bi8v7ieepi4ny"]
+
+[ext_resource type="StyleBox" uid="uid://dtlcsb5rjxgjp" path="res://assets/themes/black_style_box_flat.tres" id="1_yi6x4"]
+
+[resource]
+Button/styles/focus = ExtResource("1_yi6x4")
+Button/styles/hover = ExtResource("1_yi6x4")
+Button/styles/normal = ExtResource("1_yi6x4")
+HSlider/styles/grabber_area = ExtResource("1_yi6x4")
+HSlider/styles/grabber_area_highlight = ExtResource("1_yi6x4")
+HSlider/styles/slider = ExtResource("1_yi6x4")
+LineEdit/styles/focus = ExtResource("1_yi6x4")
+LineEdit/styles/normal = ExtResource("1_yi6x4")

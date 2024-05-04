@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8on0ngoa3108"]
+[gd_scene load_steps=4 format=3 uid="uid://c8on0ngoa3108"]
 
 [ext_resource type="Script" path="res://scripts/ui/MainScreen.gd" id="1_lgjmg"]
+[ext_resource type="Theme" uid="uid://bi8v7ieepi4ny" path="res://assets/themes/theme.tres" id="2_75yj0"]
+[ext_resource type="Texture2D" uid="uid://3khbwri8d1ft" path="res://assets/images/logo_no_background.svg" id="2_a5mct"]
 
 [node name="MainScreen" type="Control"]
 layout_mode = 3
@@ -11,63 +13,100 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lgjmg")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 300
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 300
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Play" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Play"
+button_pressed = true
+text = "3D"
+alignment = 1
 
-[node name="ResolutionLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_75yj0")
+text = "PLAY"
+
+[node name="ResolutionLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_75yj0")
 text = "Resolution"
 
-[node name="QualitySlider" type="HSlider" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="QualitySlider" type="HSlider" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_75yj0")
 min_value = 0.25
 max_value = 2.0
 step = 0.05
 value = 1.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Game" type="OptionButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Game" type="OptionButton" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_75yj0")
 
-[node name="Sensitivity" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Sensitivity" type="LineEdit" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_75yj0")
 text = "0.215"
 placeholder_text = "0.215"
 
-[node name="Options" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_75yj0")
 text = "Options"
 
-[node name="Quit" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_75yj0")
 text = "Quit"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
 layout_mode = 2
 
-[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="value_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/QualitySlider" to="." method="_on_quality_slider_value_changed"]
-[connection signal="item_selected" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Game" to="." method="_on_game_item_selected"]
-[connection signal="text_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity" to="." method="_on_sensitivity_text_changed"]
-[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+
+[node name="Logo" type="Sprite2D" parent="BoxContainer"]
+modulate = Color(1, 1, 1, 0.27451)
+texture = ExtResource("2_a5mct")
+
+[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="value_changed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/QualitySlider" to="." method="_on_quality_slider_value_changed"]
+[connection signal="item_selected" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer/Game" to="." method="_on_game_item_selected"]
+[connection signal="text_changed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity" to="." method="_on_sensitivity_text_changed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
