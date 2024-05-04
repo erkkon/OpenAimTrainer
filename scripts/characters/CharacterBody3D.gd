@@ -6,6 +6,7 @@ const SPEED = 20.0
 const JUMP_VELOCITY = 25
 const ACCELERATION = 50.0
 const DECCELERATION = 5.0
+const BULLET_SPEED = 500.0
 
 var conversion_sensitivity = 0.0707589285714285
 var user_sensitivity = 0.14
@@ -24,7 +25,7 @@ var direction = Vector3()
 @onready var raycast = $Head/Camera3D/RayCast3D
 @onready var timer = $"../Timer"
 @onready var timer_label = $Head/Timer
-@onready var bullet_hole = preload("res://scenes/ui/BulletHole.tscn")
+@onready var bullet = preload("res://scenes/ui/Bullet.tscn")
 @onready var paused = $"../CanvasLayer/Pause"
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -46,17 +47,24 @@ func fire():
 	if Input.is_action_just_pressed("fire"):
 		if raycast.is_colliding():
 			var target = raycast.get_collider()
-			var bullet_hole_instance = bullet_hole.instantiate()
+			var bullet_instance = bullet.instantiate()
 			
-			target.add_child(bullet_hole_instance)
-			bullet_hole_instance.global_transform.origin = raycast.get_collision_point()
-			bullet_hole_instance.look_at(position + Vector3.FORWARD, raycast.get_collision_normal())
+			# Set the bullet's initial position to the camera's position
+			bullet_instance.global_transform.origin = camera.global_transform.origin
+			
+			# Set the bullet's velocity
+			bullet_instance.velocity = (raycast.get_collision_point() - camera.global_transform.origin).normalized() * BULLET_SPEED
+			
+			# Add the bullet to the scene
+			get_tree().root.add_child(bullet_instance)
 			
 			if target.is_in_group("Enemy"):
 				target.health -= damage 
 		shot_count += 1
 		if (timer.is_stopped()):
 			timer.start()
+
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
