@@ -85,9 +85,8 @@ func AddGamesSensitivities():
 func AddGames():
 	for model in models3d:
 		var hboxc = HBoxContainer.new()
-		var theme = load("res://assets/themes/theme.tres")
 		var button = Button.new()
-		button.theme = theme
+		button.theme = load("res://assets/themes/theme.tres")
 		button.text = model
 		button.name = model
 		button.pressed.connect(startTraining.bind(button.name))

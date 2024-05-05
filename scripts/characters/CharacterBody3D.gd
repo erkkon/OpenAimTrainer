@@ -48,14 +48,14 @@ func fire():
 			var target = raycast.get_collider()
 			var bullet_instance = bullet.instantiate()
 			
+			# Add the bullet to the scene
+			get_tree().root.add_child(bullet_instance)
+			
 			# Set the bullet's initial position to a point below and to the right of the camera
 			bullet_instance.global_transform.origin = camera.global_transform.origin + Vector3(1, -1, 0)
 			
 			# Pass the collision point of the raycast to the bullet
 			bullet_instance.target = raycast.get_collision_point()
-			
-			# Add the bullet to the scene
-			get_tree().root.add_child(bullet_instance)
 			
 			if target.is_in_group("Enemy"):
 				target.health -= damage 
@@ -63,6 +63,7 @@ func fire():
 		shot_count += 1
 		if (timer.is_stopped()):
 			timer.start()
+
 
 
 
