@@ -59,7 +59,7 @@ func fire():
 			
 			if target.is_in_group("Enemy"):
 				target.health -= damage 
-				bullet_instance.has_collided = true # Set has_collided to true in the Bullet instance
+				bullet_instance.hited = true
 		shot_count += 1
 		if (timer.is_stopped()):
 			timer.start()
