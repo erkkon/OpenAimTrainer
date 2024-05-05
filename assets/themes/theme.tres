@@ -1,13 +1,21 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bi8v7ieepi4ny"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bi8v7ieepi4ny"]
 
-[ext_resource type="StyleBox" uid="uid://dtlcsb5rjxgjp" path="res://assets/themes/black_style_box_flat.tres" id="1_yi6x4"]
+[ext_resource type="StyleBox" uid="uid://duuu0vgbju7o" path="res://assets/themes/hover.tres" id="1_2bvwv"]
+[ext_resource type="StyleBox" uid="uid://dtlcsb5rjxgjp" path="res://assets/themes/normal.tres" id="1_kvmed"]
 
 [resource]
-Button/styles/focus = ExtResource("1_yi6x4")
-Button/styles/hover = ExtResource("1_yi6x4")
-Button/styles/normal = ExtResource("1_yi6x4")
-HSlider/styles/grabber_area = ExtResource("1_yi6x4")
-HSlider/styles/grabber_area_highlight = ExtResource("1_yi6x4")
-HSlider/styles/slider = ExtResource("1_yi6x4")
-LineEdit/styles/focus = ExtResource("1_yi6x4")
-LineEdit/styles/normal = ExtResource("1_yi6x4")
+Button/styles/focus = ExtResource("1_kvmed")
+Button/styles/hover = ExtResource("1_2bvwv")
+Button/styles/normal = ExtResource("1_kvmed")
+Button/styles/pressed = ExtResource("1_kvmed")
+CheckButton/styles/focus = ExtResource("1_kvmed")
+CheckButton/styles/hover = ExtResource("1_2bvwv")
+CheckButton/styles/hover_pressed = ExtResource("1_2bvwv")
+CheckButton/styles/normal = ExtResource("1_kvmed")
+CheckButton/styles/pressed = ExtResource("1_kvmed")
+HSlider/styles/grabber_area = ExtResource("1_kvmed")
+HSlider/styles/grabber_area_highlight = ExtResource("1_kvmed")
+HSlider/styles/slider = ExtResource("1_kvmed")
+Label/styles/normal = ExtResource("1_kvmed")
+LineEdit/styles/focus = ExtResource("1_2bvwv")
+LineEdit/styles/normal = ExtResource("1_kvmed")
