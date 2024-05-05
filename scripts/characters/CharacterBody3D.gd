@@ -29,6 +29,9 @@ var direction = Vector3()
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var thread = Thread.new()
+var bullets = []
+
 func _ready():
 	paused.visible = false
 	timer_label.set_text((str(seconds) + "s"))
@@ -40,7 +43,21 @@ func _ready():
 		mouse_sensitivity = user_sensitivity * conversion_sensitivity * 0.67857142857142857143
 	else:
 		mouse_sensitivity = user_sensitivity * conversion_sensitivity
+
+	# Create a Callable object
+	var callable = Callable(self, "_fire_in_thread")
+
+	# Start the thread
+	thread.start(callable)
 	
+#func  _exit_tree():
+	#thread.wait_to_finish()
+
+func _fire_in_thread():
+	while true:
+		fire()
+		# Sleep for a while to prevent the thread from using too much CPU
+		OS.delay_msec(50)
 
 func fire():
 	if Input.is_action_just_pressed("fire"):
@@ -60,6 +77,10 @@ func fire():
 			if target.is_in_group("Enemy"):
 				target.health -= damage 
 				bullet_instance.hited = true
+			
+			# Add the bullet to the list
+			bullets.append(bullet_instance)
+			
 		shot_count += 1
 		if (timer.is_stopped()):
 			timer.start()
