@@ -6,7 +6,6 @@ const SPEED = 20.0
 const JUMP_VELOCITY = 25
 const ACCELERATION = 50.0
 const DECCELERATION = 5.0
-const BULLET_SPEED = 500.0
 
 var conversion_sensitivity = 0.0707589285714285
 var user_sensitivity = 0.14

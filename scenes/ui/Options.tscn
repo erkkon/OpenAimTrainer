@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cropshnueuiqr"]
+[gd_scene load_steps=4 format=3 uid="uid://cropshnueuiqr"]
 
 [ext_resource type="Script" path="res://scripts/ui/Options.gd" id="1_4ilr3"]
 [ext_resource type="Script" path="res://scripts/ui/Crosshair.gd" id="2_iu82h"]
+[ext_resource type="Theme" uid="uid://bi8v7ieepi4ny" path="res://assets/themes/theme.tres" id="2_yemm7"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -34,6 +35,7 @@ layout_mode = 2
 
 [node name="LabelCrosshair" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "Crosshair"
 uppercase = true
 
@@ -61,70 +63,84 @@ text = "Crosshair"
 
 [node name="Outline" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist"]]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 button_pressed = true
 text = "Outline"
 
 [node name="CrosshairInner" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist"]]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 button_pressed = true
 text = "Crosshair inner"
 
 [node name="Dot" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist"]]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "Dot"
 
 [node name="DotSize" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "6"
 placeholder_text = "6"
 
 [node name="OutlineSize" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "2"
 placeholder_text = "2"
 
 [node name="CrosshairHeight" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "4"
 placeholder_text = "4"
 
 [node name="CrosshairWidth" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "12"
 placeholder_text = "12"
 
 [node name="CrosshairSpace" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "5"
 placeholder_text = "5"
 
 [node name="CrosshairColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "Crosshair color"
 color = Color(0, 1, 1, 1)
 
 [node name="OutlineColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "Outline color"
 
 [node name="LabelTarget" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "Target"
 uppercase = true
 
 [node name="TargetColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "Target color"
 color = Color(1, 1, 0, 1)
 edit_alpha = false
 
 [node name="ImportExport" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "IMPORT / EXPORT"
 uppercase = true
 
 [node name="Export" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "Export"
 
 [node name="ExportFileDialog" type="FileDialog" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
@@ -134,18 +150,21 @@ access = 2
 
 [node name="Import" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "Import"
 
 [node name="ImportFileDialog" type="FileDialog" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 title = "Open a File"
 initial_position = 2
 size = Vector2i(2017, 1500)
+theme = ExtResource("2_yemm7")
 ok_button_text = "Open"
 file_mode = 0
 access = 2
 
 [node name="Back" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_yemm7")
 text = "Back"
 
 [connection signal="refresh_crosshair" from="." to="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Control/Crosshair" method="_on_options_refresh_crosshair"]

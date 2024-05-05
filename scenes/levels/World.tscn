@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://cdbhv0p0jfr75"]
+[gd_scene load_steps=19 format=3 uid="uid://cdbhv0p0jfr75"]
 
 [ext_resource type="Script" path="res://scripts/levels/World.gd" id="1_02ggb"]
 [ext_resource type="Script" path="res://scripts/characters/CharacterBody3D.gd" id="1_77co2"]
 [ext_resource type="Script" path="res://scripts/ui/Crosshair.gd" id="4_jkxyl"]
 [ext_resource type="Script" path="res://scripts/levels/Pause.gd" id="5_4wxgd"]
 [ext_resource type="LabelSettings" uid="uid://crnxcugovdaio" path="res://assets/fonts/100_outline.tres" id="5_k01xn"]
+[ext_resource type="Theme" uid="uid://bi8v7ieepi4ny" path="res://assets/themes/theme.tres" id="6_lw28e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hein3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -238,10 +239,12 @@ grow_vertical = 2
 
 [node name="Resume" type="Button" parent="CanvasLayer/Pause/Buttons"]
 layout_mode = 2
+theme = ExtResource("6_lw28e")
 text = "Resume"
 
 [node name="Menu" type="Button" parent="CanvasLayer/Pause/Buttons"]
 layout_mode = 2
+theme = ExtResource("6_lw28e")
 text = "Menu"
 
 [node name="FullScreenRequest" type="Control" parent="CanvasLayer"]
@@ -278,10 +281,12 @@ grow_vertical = 2
 
 [node name="FullScreenNeeded" type="Button" parent="CanvasLayer/FullScreenRequest/Buttons"]
 layout_mode = 2
+theme = ExtResource("6_lw28e")
 text = "Full screen is needed."
 
 [node name="Menu" type="Button" parent="CanvasLayer/FullScreenRequest/Buttons"]
 layout_mode = 2
+theme = ExtResource("6_lw28e")
 text = "Menu"
 
 [node name="MouseCapturedRequested" type="Control" parent="CanvasLayer"]
@@ -315,6 +320,7 @@ offset_right = 503.5
 offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("6_lw28e")
 text = "Mouse captured is needed."
 
 [node name="Timer" type="Timer" parent="."]
