@@ -25,7 +25,7 @@ var direction = Vector3()
 @onready var raycast = $Head/Camera3D/RayCast3D
 @onready var timer = $"../Timer"
 @onready var timer_label = $Head/Timer
-@onready var bullet = preload("res://scenes/ui/Bullet.tscn")
+@onready var bullet = preload("res://scenes/levels/Bullet.tscn")
 @onready var paused = $"../CanvasLayer/Pause"
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -49,17 +49,18 @@ func fire():
 			var target = raycast.get_collider()
 			var bullet_instance = bullet.instantiate()
 			
-			# Set the bullet's initial position to the camera's position
-			bullet_instance.global_transform.origin = camera.global_transform.origin
+			# Set the bullet's initial position to a point below and to the right of the camera
+			bullet_instance.global_transform.origin = camera.global_transform.origin + Vector3(1, -1, 0)
 			
-			# Set the bullet's velocity
-			bullet_instance.velocity = (raycast.get_collision_point() - camera.global_transform.origin).normalized() * BULLET_SPEED
+			# Pass the collision point of the raycast to the bullet
+			bullet_instance.target = raycast.get_collision_point()
 			
 			# Add the bullet to the scene
 			get_tree().root.add_child(bullet_instance)
 			
 			if target.is_in_group("Enemy"):
 				target.health -= damage 
+				bullet_instance.has_collided = true # Set has_collided to true in the Bullet instance
 		shot_count += 1
 		if (timer.is_stopped()):
 			timer.start()

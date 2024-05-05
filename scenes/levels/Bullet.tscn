@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dux8sd0scoqie"]
 
-[ext_resource type="Script" path="res://scripts/ui/Bullet.gd" id="1_qd0pb"]
+[ext_resource type="Script" path="res://scripts/ui/Bullet.gd" id="1_ggvyl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmsg0"]
 albedo_color = Color(1, 0, 1, 1)
@@ -11,7 +11,7 @@ radius = 0.15
 height = 0.3
 
 [node name="BulletHole" type="Node3D"]
-script = ExtResource("1_qd0pb")
+script = ExtResource("1_ggvyl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.00438, 0, 0, 0, 1.00438, 0, 0, 0, 1.00438, 0, 0, 0)
