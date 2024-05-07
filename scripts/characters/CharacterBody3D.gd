@@ -55,8 +55,17 @@ func _ready():
 	paused.connect("pause_game", callable_stop_thread)
 	paused.connect("resume_game", callable_start_thread)
 	
-#func  _exit_tree():
-	#thread.wait_to_finish()
+func _exit_tree():
+	# Stop the thread
+	if thread.is_alive():
+		thread.wait_to_finish()
+
+	# Free all the bullets
+	for bullet_instance in bullets:
+		bullet_instance.queue_free()
+
+	# Clear the bullets list
+	bullets.clear()
 
 func _fire_in_thread():
 	while not get_tree().paused:  # Change this line

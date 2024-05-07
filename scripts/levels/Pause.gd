@@ -41,7 +41,7 @@ signal resume_game
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_OUT:
-		emit_signal("pause_game")
+		trigger_pause(true)
 
 func trigger_pause(new_pause_state):
 	get_tree().paused = new_pause_state
