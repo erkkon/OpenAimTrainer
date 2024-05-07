@@ -49,7 +49,6 @@ func _ready():
 
 	# Start the thread
 	thread.start(callable_fire_in_thread)
-	var pause_control = get_node("../Pause")
 	var callable_stop_thread = Callable(self, "stop_thread")
 	var callable_start_thread = Callable(self, "start_thread")
 	paused.connect("pause_game", callable_stop_thread)
