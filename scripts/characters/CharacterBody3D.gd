@@ -28,6 +28,7 @@ var direction = Vector3()
 @onready var paused = $"../CanvasLayer/Pause"
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var callable_fire_in_thread = Callable(self, "_fire_in_thread")
 
 var thread = Thread.new()
 var bullets = []
@@ -45,19 +46,32 @@ func _ready():
 		mouse_sensitivity = user_sensitivity * conversion_sensitivity
 
 	# Create a Callable object
-	var callable = Callable(self, "_fire_in_thread")
 
 	# Start the thread
-	thread.start(callable)
+	thread.start(callable_fire_in_thread)
+	var pause_control = get_node("../Pause")
+	var callable_stop_thread = Callable(self, "stop_thread")
+	var callable_start_thread = Callable(self, "start_thread")
+	paused.connect("pause_game", callable_stop_thread)
+	paused.connect("resume_game", callable_start_thread)
 	
 #func  _exit_tree():
 	#thread.wait_to_finish()
 
 func _fire_in_thread():
-	while true:
+	while not get_tree().paused:  # Change this line
 		fire()
-		# Sleep for a while to prevent the thread from using too much CPU
 		OS.delay_msec(50)
+
+func start_thread():
+	if not thread.is_alive():
+		thread.start(callable_fire_in_thread)
+
+
+func stop_thread():
+	if thread.is_alive():
+		thread.wait_to_finish()
+
 
 func fire():
 	if Input.is_action_just_pressed("fire"):

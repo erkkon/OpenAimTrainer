@@ -1,5 +1,9 @@
 extends Control
 
+signal pause_game
+signal resume_game
+
+
 #@onready var full_screen_needed = $"../FullScreenRequest"
 # Declare member variables here. Examples:
 # var a = 2
@@ -34,19 +38,21 @@ extends Control
 #		full_screen_needed.visible = false
 #		trigger_pause(false)
 
+
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_OUT:
-		trigger_pause(true)
+		emit_signal("pause_game")
 
 func trigger_pause(new_pause_state):
 	get_tree().paused = new_pause_state
 	visible = new_pause_state
-	if (new_pause_state):
+	if new_pause_state:
 		$Buttons/Resume.grab_focus()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		emit_signal("pause_game")
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+		emit_signal("resume_game")
 
 func _on_resume_pressed():
 	trigger_pause(false)
