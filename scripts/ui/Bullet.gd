@@ -1,7 +1,7 @@
 extends Node3D
 
 var target = Vector3() # Declare the target variable
-const BULLET_SPEED = 500.0 # Declare the BULLET_SPEED constant
+const BULLET_SPEED = 1000.0 # Declare the BULLET_SPEED constant
 var has_reached_target = false # Declare the has_reached_target variable
 var hited = false
 # Called when the node enters the scene tree for the first time.

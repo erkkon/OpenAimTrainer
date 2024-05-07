@@ -68,15 +68,17 @@ func _exit_tree():
 
 	# Free all the bullets
 	for bullet_instance in bullets:
-		bullet_instance.queue_free()
+		if bullet_instance != null:
+			bullet_instance.queue_free()
 
 	# Clear the bullets list
 	bullets.clear()
 
 func _fire_in_thread():
-	while not get_tree().paused:  # Change this line
-		fire()
+	while not get_tree().paused:
+		call_deferred("fire")
 		OS.delay_msec(50)
+
 
 func start_thread():
 	if not thread.is_alive():
@@ -86,6 +88,10 @@ func start_thread():
 func stop_thread():
 	if thread.is_alive():
 		thread.wait_to_finish()
+		
+func set_bullet_transform(bullet_instance):
+	if camera.is_inside_tree():
+		bullet_instance.global_transform.origin = camera.global_transform.origin + Vector3(1, -1, 0)
 
 
 func fire():
@@ -93,19 +99,18 @@ func fire():
 		if raycast.is_colliding():
 			var target = raycast.get_collider()
 			var bullet_instance = bullet.instantiate()
+			get_tree().root.call_deferred("add_child", bullet_instance)
+			call_deferred("set_bullet_transform", bullet_instance)
+
+
 			
-			# Add the bullet to the scene
-			get_tree().root.add_child(bullet_instance)
-			
-			# Set the bullet's initial position to a point below and to the right of the camera
-			bullet_instance.global_transform.origin = camera.global_transform.origin + Vector3(1, -1, 0)
 			
 			# Pass the collision point of the raycast to the bullet
 			bullet_instance.target = raycast.get_collision_point()
-			
-			if target.is_in_group("Enemy"):
-				target.health -= damage 
-				bullet_instance.hited = true
+			if target != null:
+				if target.is_in_group("Enemy"):
+					target.health -= damage 
+					bullet_instance.hited = true
 			
 			# Add the bullet to the list
 			bullets.append(bullet_instance)
