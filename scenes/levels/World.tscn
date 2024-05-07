@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://cdbhv0p0jfr75"]
+[gd_scene load_steps=20 format=3 uid="uid://cdbhv0p0jfr75"]
 
 [ext_resource type="Script" path="res://scripts/levels/World.gd" id="1_02ggb"]
 [ext_resource type="Script" path="res://scripts/characters/CharacterBody3D.gd" id="1_77co2"]
+[ext_resource type="Texture2D" uid="uid://mhv5qf7fdeig" path="res://assets/images/texture_08.png" id="2_cc8hq"]
 [ext_resource type="Script" path="res://scripts/ui/Crosshair.gd" id="4_jkxyl"]
 [ext_resource type="Script" path="res://scripts/levels/Pause.gd" id="5_4wxgd"]
 [ext_resource type="LabelSettings" uid="uid://crnxcugovdaio" path="res://assets/fonts/100_outline.tres" id="5_k01xn"]
@@ -21,6 +22,8 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glx82"]
+albedo_color = Color(0.379505, 0.282407, 0.147912, 1)
+albedo_texture = ExtResource("2_cc8hq")
 uv1_scale = Vector3(0.1, 0.1, 0.1)
 uv1_triplanar = true
 
