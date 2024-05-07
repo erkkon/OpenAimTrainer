@@ -204,7 +204,6 @@ libraries = {
 
 [node name="Pause" type="Control" parent="CanvasLayer"]
 process_mode = 2
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -236,6 +235,11 @@ offset_right = 35.0
 offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Kills" type="Label" parent="CanvasLayer/Pause/Buttons"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("5_k01xn")
 
 [node name="Resume" type="Button" parent="CanvasLayer/Pause/Buttons"]
 layout_mode = 2

@@ -7,51 +7,7 @@ extends Control
 @onready var sensitivity := $MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity
 @onready var exit_button = $MarginContainer/ScrollContainer/HBoxContainer/VBoxContainer/Quit
 
-#4k
-var games_sensitivities: Dictionary = {
-	"Valorant": 0.0707589285714285,
-	"CounterStrike": 0.0222372497081799,
-	"Fortnite": 0.00561534231977053
-	}
 
-var models3d: Dictionary = {
-	"3d_head_level_v1": {
-		"spawn_location_x_0": 24,
-		"spawn_location_x_1": -24,
-		"spawn_location_y_0": 4,
-		"spawn_location_y_1": 4,
-		"movment": false,
-		"size": 0.5,
-		"number_of_initial_targets": 1
-	},
-	"3d_multiple_basic_targets_movement_v1": {
-		"spawn_location_x_0": 12,
-		"spawn_location_x_1": -12,
-		"spawn_location_y_0": 4,
-		"spawn_location_y_1": 20,
-		"movment": true,
-		"size": 0.5,
-		"number_of_initial_targets": 6
-	},
-	"3d_multiple_basic_targets_v1": {
-		"spawn_location_x_0": 12,
-		"spawn_location_x_1": -12,
-		"spawn_location_y_0": 4,
-		"spawn_location_y_1": 20,
-		"movment": false,
-		"size": 0.5,
-		"number_of_initial_targets": 6
-	},
-	"3d_multiple_medium_targets_v1": {
-		"spawn_location_x_0": 11,
-		"spawn_location_x_1": -11,
-		"spawn_location_y_0": 4,
-		"spawn_location_y_1": 15,
-		"movment": false,
-		"size": 3,
-		"number_of_initial_targets": 3
-	}
-}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -78,12 +34,12 @@ func _ready():
 #		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func AddGamesSensitivities():
-	for sens in games_sensitivities:
+	for sens in Global.games_sensitivities:
 		game.add_item(sens)
 
 
 func AddGames():
-	for model in models3d:
+	for model in Global.models3d:
 		var hboxc = HBoxContainer.new()
 		var button = Button.new()
 		button.theme = load("res://assets/themes/theme.tres")
@@ -111,7 +67,7 @@ func AddGames():
 func startTraining(type):
 	if !OS.has_feature("web"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	Global.game_type = models3d[type]
+	Global.game_type = type
 	get_tree().change_scene_to_file("res://scenes/levels/World.tscn")
 
 
@@ -123,7 +79,7 @@ func update_resolution_label() -> void:
 
 func _on_play_pressed():
 	var keys = []
-	for key in models3d.keys():
+	for key in Global.models3d.keys():
 		keys.push_back(key)
 	
 	var random_index = randi() % keys.size()
@@ -143,13 +99,13 @@ func _on_quit_pressed():
 
 func _on_sensitivity_text_changed(new_text):
 	DataManager.save_data("sensitivity_game", game.get_selected_id())
-	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(game.get_selected_id())))
+	DataManager.save_data("sensitivity_game_value", Global.games_sensitivities.get(game.get_item_text(game.get_selected_id())))
 	DataManager.save_data("sensitivity", float(new_text))
 
 
 func _on_game_item_selected(index):
 	DataManager.save_data("sensitivity_game", index)
-	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(index)))
+	DataManager.save_data("sensitivity_game_value", Global.games_sensitivities.get(game.get_item_text(index)))
 
 
 func _on_options_pressed():

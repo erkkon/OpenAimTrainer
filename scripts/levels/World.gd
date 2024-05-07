@@ -9,6 +9,7 @@ var id_spawn_target = 0
 @onready var animation_kill = $Player/Head/AnimationKill
 @onready var kill = $Player/Head/Kill
 @onready var kills = $Player/Head/Kills
+@onready var kills_result = $CanvasLayer/Pause/Buttons/Kills
 @onready var full_screen_needed = $CanvasLayer/FullScreenRequest
 @onready var captured_needed = $CanvasLayer/MouseCapturedRequested
 #@onready var anim_hit = $FPS/Head/Camera3D/AnimationHit
@@ -20,10 +21,11 @@ func _ready():
 	full_screen_requested()
 	id_spawn_target = 0
 	count_kills = 0
+	kills_result.set_text((str(count_kills)) + ' KILLS ON ' + str(Global.game_type))
 	
 	kill.visible = false
 	
-	for x in range(Global.game_type.number_of_initial_targets):
+	for x in range(Global.models3d[Global.game_type].number_of_initial_targets):
 		spawn_target()
 
 func _process(_delta):
@@ -36,8 +38,8 @@ func target_killed():
 
 func randomize_vector():
 	randomize()
-	var location_x = randf_range(Global.game_type.spawn_location_x_0, Global.game_type.spawn_location_x_1)
-	var location_y = randf_range(Global.game_type.spawn_location_y_0, Global.game_type.spawn_location_y_1)
+	var location_x = randf_range(Global.models3d[Global.game_type].spawn_location_x_0, Global.models3d[Global.game_type].spawn_location_x_1)
+	var location_y = randf_range(Global.models3d[Global.game_type].spawn_location_y_0, Global.models3d[Global.game_type].spawn_location_y_1)
 	var location_z = -25
 	return Vector3(location_x, location_y, location_z)
 
@@ -48,7 +50,7 @@ func check_distance():
 	#if (DataManager.last_vectors.keys().size() > 0):
 	#	for last_key in DataManager.last_vectors.keys():
 	#		distance = DataManager.last_vectors[last_key].distance_to(vector_return)
-	#		if(distance < (Global.game_type.size * 2)):
+	#		if(distance < (Global.models3d[Global.game_type].size * 2)):
 	#			have_distance = false
 	return [have_distance, vector_return, distance]
 
@@ -67,7 +69,7 @@ func spawn_target():
 	#DataManager.last_vectors[id_spawn_target] = vector_return
 	
 	var target = packed_target.instantiate()
-	target.init(Global.game_type.size, id_spawn_target, Global.game_type.movment)
+	target.init(Global.models3d[Global.game_type].size, id_spawn_target, Global.models3d[Global.game_type].movment)
 	target.connect("target_kill", Callable(self, "target_killed"))
 	target.set_position(location_target)
 	add_child(target)
@@ -75,6 +77,7 @@ func spawn_target():
 func messageHit():
 	count_kills += 1
 	kills.set_text((str(count_kills)))
+	kills_result.set_text((str(count_kills)) + ' KILLS ON ' +  str(Global.game_type))
 	if not animation_kill.is_playing():
 		animation_kill.play("kill")
 # Called every frame. 'delta' is the elapsed time since the previous frame.

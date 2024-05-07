@@ -26,6 +26,10 @@ var direction = Vector3()
 @onready var timer_label = $Head/Timer
 @onready var bullet = preload("res://scenes/levels/Bullet.tscn")
 @onready var paused = $"../CanvasLayer/Pause"
+@onready var kills = $"../CanvasLayer/Pause/Buttons/Kills"
+@onready var resume = $"../CanvasLayer/Pause/Buttons/Resume"
+
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var callable_fire_in_thread = Callable(self, "_fire_in_thread")
@@ -35,6 +39,9 @@ var bullets = []
 
 func _ready():
 	paused.visible = false
+	kills.visible = false
+	resume.visible = true
+	
 	timer_label.set_text((str(seconds) + "s"))
 	if DataManager.get_data("sensitivity_game_value"):
 		conversion_sensitivity = DataManager.get_data("sensitivity_game_value")
@@ -172,7 +179,10 @@ func random_spread() -> float:
 func _on_timer_timeout():
 	seconds -= 1
 	timer_label.set_text((str(seconds) + "s"))
-	if (int(seconds) <= -1):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		get_tree().change_scene_to_file("res://scenes/ui/MainScreen.tscn")
+	if (int(seconds) <= 0):
+		kills.visible = true
+		resume.visible = false		
+		emit_signal("pause_game")
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)		
+		#get_tree().change_scene_to_file("res://scenes/ui/MainScreen.tscn")
 
