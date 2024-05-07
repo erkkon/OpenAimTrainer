@@ -5,6 +5,8 @@ var location_target = Vector3()
 var count_kills = 0
 var id_spawn_target = 0
 
+const FULLSCREEN_MODE = 3
+
 
 @onready var animation_kill = $Player/Head/AnimationKill
 @onready var kill = $Player/Head/Kill
@@ -91,17 +93,20 @@ func _on_menu_pressed():
 	pass # Replace with function body.
 
 func full_screen_requested():
-	if (DisplayServer.window_get_mode() < 3):
+	if (DisplayServer.window_get_mode() < FULLSCREEN_MODE):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		full_screen_needed.visible = true
+		get_tree().paused = true
+	elif (Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED):
+		captured_needed.visible = true
 		get_tree().paused = true
 
 
 
 func _on_full_screen_needed_pressed():
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	full_screen_needed.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	full_screen_needed.visible = false
 	captured_needed.visible = true
 	var timer = Timer.new()
 	timer.set_wait_time(3)
@@ -112,3 +117,8 @@ func _on_mouse_captured_needed_pressed():
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	captured_needed.visible = false
+	var timer = Timer.new()  # Add a timer to capture the mouse again after a delay
+	timer.set_wait_time(3)
+	timer.connect("timeout", Callable(self, "_recapture_mouse"))
+	add_child(timer)
+	timer.start()
