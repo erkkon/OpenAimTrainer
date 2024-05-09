@@ -31,6 +31,7 @@ func _ready():
 		spawn_target()
 
 func _process(_delta):
+	await get_tree().create_timer(0.5).timeout
 	full_screen_requested()
 
 
@@ -93,32 +94,32 @@ func _on_menu_pressed():
 	pass # Replace with function body.
 
 func full_screen_requested():
-	if (DisplayServer.window_get_mode() < FULLSCREEN_MODE):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		full_screen_needed.visible = true
-		get_tree().paused = true
-	elif (Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED):
-		captured_needed.visible = true
-		get_tree().paused = true
-
+	if (DisplayServer.window_get_mode() < FULLSCREEN_MODE || Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED):
+		if (full_screen_needed.visible == false):
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			full_screen_needed.visible = true
+			get_tree().paused = true
+	elif full_screen_needed.visible == true:
+		full_screen_needed.visible = false
 
 
 func _on_full_screen_needed_pressed():
+	full_screen_needed.visible = false
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	full_screen_needed.visible = false
 	captured_needed.visible = true
-	var timer = Timer.new()
-	timer.set_wait_time(3)
-	timer.connect("timeout", Callable(self, "full_screen_requested"))
+	#var timer = Timer.new()
+	#timer.set_wait_time(3)
+	#timer.connect("timeout", Callable(self, "full_screen_requested"))
 
 
 func _on_mouse_captured_needed_pressed():
-	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	captured_needed.visible = false
-	var timer = Timer.new()  # Add a timer to capture the mouse again after a delay
-	timer.set_wait_time(3)
-	timer.connect("timeout", Callable(self, "_recapture_mouse"))
-	add_child(timer)
-	timer.start()
+	get_tree().paused = false
+	#await get_tree().create_timer(1.0).timeout
+	#var timer = Timer.new()  # Add a timer to capture the mouse again after a delay
+	#timer.set_wait_time(3)
+	#timer.connect("timeout", Callable(self, "_recapture_mouse"))
+	#add_child(timer)
+	#timer.start()

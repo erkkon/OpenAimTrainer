@@ -22,7 +22,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glx82"]
-albedo_color = Color(0.379505, 0.282407, 0.147912, 1)
+albedo_color = Color(0.740337, 0.498255, 0.321534, 1)
 albedo_texture = ExtResource("2_cc8hq")
 uv1_scale = Vector3(0.1, 0.1, 0.1)
 uv1_triplanar = true
