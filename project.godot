@@ -77,6 +77,10 @@ f_pressed={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/text/translations.en.translation", "res://assets/text/translations.es.translation")
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

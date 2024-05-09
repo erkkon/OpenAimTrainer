@@ -35,7 +35,7 @@ var games_sensitivities: Dictionary = {
 	}
 
 var models3d: Dictionary = {
-	"3d_head_level_v1": {
+	"3D_HEAD_LEVEL_V1": {
 		"spawn_location_x_0": 24,
 		"spawn_location_x_1": -24,
 		"spawn_location_y_0": 4,
@@ -44,7 +44,7 @@ var models3d: Dictionary = {
 		"size": 0.5,
 		"number_of_initial_targets": 1
 	},
-	"3d_multiple_basic_targets_movement_v1": {
+	"3D_MULTIPLE_BASIC_TARGETS_MOVEMENT_V1": {
 		"spawn_location_x_0": 12,
 		"spawn_location_x_1": -12,
 		"spawn_location_y_0": 4,
@@ -53,7 +53,7 @@ var models3d: Dictionary = {
 		"size": 0.5,
 		"number_of_initial_targets": 6
 	},
-	"3d_multiple_basic_targets_v1": {
+	"3D_MULTIPLE_BASIC_TARGETS_V1": {
 		"spawn_location_x_0": 12,
 		"spawn_location_x_1": -12,
 		"spawn_location_y_0": 4,
@@ -62,7 +62,7 @@ var models3d: Dictionary = {
 		"size": 0.5,
 		"number_of_initial_targets": 6
 	},
-	"3d_multiple_medium_targets_v1": {
+	"3D_MULTIPLE_MEDIUM_TARGETS_V1": {
 		"spawn_location_x_0": 11,
 		"spawn_location_x_1": -11,
 		"spawn_location_y_0": 4,

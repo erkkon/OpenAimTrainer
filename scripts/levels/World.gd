@@ -23,7 +23,7 @@ func _ready():
 	full_screen_requested()
 	id_spawn_target = 0
 	count_kills = 0
-	kills_result.set_text((str(count_kills)) + ' KILLS ON ' + str(Global.game_type))
+	kills_result.set_text(tr("KILLS_ON") % [str(count_kills), tr(str(Global.game_type))])
 	
 	kill.visible = false
 	
@@ -80,7 +80,7 @@ func spawn_target():
 func messageHit():
 	count_kills += 1
 	kills.set_text((str(count_kills)))
-	kills_result.set_text((str(count_kills)) + ' KILLS ON ' +  str(Global.game_type))
+	kills_result.set_text(tr("KILLS_ON") % [str(count_kills), tr(str(Global.game_type))])
 	if not animation_kill.is_playing():
 		animation_kill.play("kill")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -95,12 +95,10 @@ func _on_menu_pressed():
 
 func full_screen_requested():
 	if (DisplayServer.window_get_mode() < FULLSCREEN_MODE || Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED):
-		if (full_screen_needed.visible == false):
+		if (full_screen_needed.visible == false && get_tree().paused == false):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			full_screen_needed.visible = true
 			get_tree().paused = true
-	elif full_screen_needed.visible == true:
-		full_screen_needed.visible = false
 
 
 func _on_full_screen_needed_pressed():

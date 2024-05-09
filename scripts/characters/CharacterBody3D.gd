@@ -15,7 +15,7 @@ var spread_bullets = true
 var damage = 10
 var shot_count = 0
 
-var seconds = 60
+var seconds = 5
 
 var direction = Vector3()
 
@@ -186,7 +186,7 @@ func _on_timer_timeout():
 	timer_label.set_text((str(seconds) + "s"))
 	if (int(seconds) <= 0):
 		kills.visible = true
-		resume.visible = false		
+		resume.visible = false
 		emit_signal("pause_game")
 		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)		
 		#get_tree().change_scene_to_file("res://scenes/ui/MainScreen.tscn")
