@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cg6ykesane17c"
-path="res://.godot/imported/3d_multiple_basic_targets_movement_v1.png-ba1f4673d193565326c7cc9e2e892c7e.ctex"
+path="res://.godot/imported/3D_MULTIPLE_BASIC_TARGETS_MOVEMENT_V1.png-f4d853f32a9c7960c436e5701dfa9d17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/games/3d_multiple_basic_targets_movement_v1.png"
-dest_files=["res://.godot/imported/3d_multiple_basic_targets_movement_v1.png-ba1f4673d193565326c7cc9e2e892c7e.ctex"]
+source_file="res://assets/images/games/3D_MULTIPLE_BASIC_TARGETS_MOVEMENT_V1.png"
+dest_files=["res://.godot/imported/3D_MULTIPLE_BASIC_TARGETS_MOVEMENT_V1.png-f4d853f32a9c7960c436e5701dfa9d17.ctex"]
 
 [params]
 
